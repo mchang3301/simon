@@ -38,7 +38,6 @@ public class Simon extends Application {
 
 
 
-        subnode.getChildren().add(text);
 
         Circle circle = new Circle(70, 20, 20);
         subnode.getChildren().add(circle);
@@ -47,7 +46,6 @@ public class Simon extends Application {
             rect.setX(90);
         });
 
-        Button btn = new Button(20, 30);
 
 
         primaryStage.setScene(scene);
