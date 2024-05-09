@@ -14,7 +14,7 @@ public class SimonSays {
         System.out.println("Welcome to Matthew's Simon Says Text Game");
         System.out.println("Rules :");
         System.out.println("i. Player with the highest score wins");
-        System.out.println("ii. Don't begin to repeat the Simon until prompted");
+        System.out.println("ii. Don't begin to repeat Simon until prompted");
 
         // launches game
         launchGame();
@@ -84,12 +84,16 @@ public class SimonSays {
         } else {
             System.out.println("Player " + (winnerIndex + 1) + " wins!");
         }
+        playAgain(b);
+
     }
 
     // Method for beginning singleplayer game
-    public static void singleplayer() {
+    public static void singleplayer(Scanner a) {
         NewGame onePlayer = new NewGame();
         onePlayer.startGame();
+
+        playAgain(a);
     }
 
     // Method for selecting game type
@@ -98,8 +102,7 @@ public class SimonSays {
         int gameType = 0;
         boolean check = true;
         do {
-            System.out.println("Enter '1' for SINGLEPLAYER");
-            System.out.println("Enter '2' for MULTIPLAYER");
+            System.out.println("Enter '1' for SINGLEPLAYER or '2' for MULTIPLAYER");
             if (scanner.hasNextInt()) {
                 gameType = scanner.nextInt();
                 if (gameType == 1 || gameType == 2) {
@@ -117,7 +120,32 @@ public class SimonSays {
             multiplayer(scanner);
         }
         if (gameType == 1) {
-            singleplayer();
+            singleplayer(scanner);
         }
     }
+
+    // Method will give user the choice to play again or end game
+    public static void playAgain(Scanner a) {
+        boolean check = true;
+        int playAgain = 0;
+        do {
+            System.out.println("Enter '1' to play again, or '2' to end game");
+            if (a.hasNextInt()) {
+                playAgain = a.nextInt();
+                if (playAgain == 1 || playAgain == 2) {
+                    check = false;
+                } else {
+                    System.out.println("Invalid input");
+                }
+            } else {
+                System.out.println("Invalid input");
+                a.next(); // Clear the invalid input
+            }
+        } while (check);
+
+        if (playAgain == 1) {
+            launchGame();
+        }
+    }
+
 }
