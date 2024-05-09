@@ -24,7 +24,7 @@ public class SimonSays {
         }
     
         // Play the game for each player
-        b.nextLine();
+        b.nextLine(); // newline is consumed by the nextLine() call
         for (int i = 0; i < numOfPlayers; i++) {
             System.out.println("Player " + (i + 1) + ":");
             System.out.println("Press Enter to start game: ");
@@ -33,7 +33,7 @@ public class SimonSays {
         }
     
         // Compare scores and determine winner
-        int maxScore = -1;
+        int maxScore = -1; // must be less than 0
         int winnerIndex = 0;
         int[] scores = new int[numOfPlayers];
         for (int i = 0; i < numOfPlayers; i++) {
