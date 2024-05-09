@@ -1,3 +1,10 @@
+/**
+ * Multiplayer SimonSays/memorization terminal game.
+ * 
+ * @author (Matthew Chang) 
+ * @version (1.0)
+ */
+
 import java.util.Scanner;
 
 public class SimonSays {

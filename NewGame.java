@@ -71,7 +71,9 @@ public class NewGame {
     // method begins the game
     public void startGame() {
         score = 0;
-        while (true) {
+        boolean gameRunning = true;
+        while (gameRunning) {
+            // stores generateActions string array in sequence
             String[] sequence = generateActions(score + 1);
             displayActions(sequence);
             sleep(1);
@@ -81,7 +83,7 @@ public class NewGame {
                 score++;
             } else {
                 System.out.println("Incorrect! Game Over. Your score: " + score);
-                break;
+                gameRunning = false;
             }
         }
     }
