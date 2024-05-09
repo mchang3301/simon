@@ -1,2 +1,0 @@
-# simon
-Simon says game
