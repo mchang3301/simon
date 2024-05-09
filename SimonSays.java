@@ -23,14 +23,15 @@ public class SimonSays {
     // Method for beginning multiplayer game
     public static void multiplayer(Scanner b) {
         System.out.println("Enter number of players: ");
-        int numOfPlayers;
+        int numOfPlayers = 0;
 
         // checks if user has inputted a integer
-        while (true) {
+        boolean isCorrectInt = false;
+        while (!isCorrectInt) {
             if (b.hasNextInt()) {
                 numOfPlayers = b.nextInt();
                 if (numOfPlayers > 0) {
-                    break;
+                    isCorrectInt = true;
                 } else {
                     System.out.println("Invalid input. Please enter a positive integer.");
                 }
