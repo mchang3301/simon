@@ -6,11 +6,12 @@ public class NewGame {
     private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
     private int score = 0;
-    
-    //creates string array of actions
+
+    // creates string array of actions
     private String[] generateActions(int length) {
         String[] sequence = new String[length];
-        String[] actions = { "jump", "clap", "spin", "wiggle", "dance", "hop", "march", "snap", "stand", "skip", "flap", "shake", "wink", "crouch", "run"};
+        String[] actions = { "jump", "clap", "spin", "wiggle", "dance", "hop", "march", "snap", "stand", "skip", "flap",
+                "shake", "wink", "crouch", "run" };
         for (int i = 0; i < length; i++) {
             sequence[i] = actions[random.nextInt(actions.length)];
         }
@@ -18,7 +19,7 @@ public class NewGame {
 
     }
 
-    //pauses execution for a set amount of time
+    // pauses execution for a set amount of time
     private static void sleep(int seconds) {
         try {
             TimeUnit.SECONDS.sleep(seconds);
@@ -27,13 +28,13 @@ public class NewGame {
         }
     }
 
-    //clears console
+    // clears console
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    //displays the sequence created in the generateActions method
+    // displays the sequence created in the generateActions method
     private static void displayActions(String[] sequence) {
         sleep(2);
         clearScreen();
@@ -48,7 +49,8 @@ public class NewGame {
         clearScreen();
     }
 
-    // Collects the repitition of the typed actions from the user. Stores and returns in an array.
+    // Collects the repitition of the typed actions from the user. Stores and
+    // returns in an array.
     private String[] getUserActions(int length) {
         System.out.println("Your turn, repeat the sequence:");
         String[] userSequence = new String[length];
@@ -88,7 +90,7 @@ public class NewGame {
         }
     }
 
-    //returns the score of the game
+    // returns the score of the game
     public int getScore() {
         return score;
     }

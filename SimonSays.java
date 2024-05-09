@@ -1,3 +1,4 @@
+
 /**
  * Multiplayer SimonSays/memorization terminal game.
  * 
@@ -22,14 +23,30 @@ public class SimonSays {
     // Method for beginning multiplayer game
     public static void multiplayer(Scanner b) {
         System.out.println("Enter number of players: ");
-        int numOfPlayers = b.nextInt();
+        int numOfPlayers;
+
+        // checks if user has inputted a integer
+        while (true) {
+            if (b.hasNextInt()) {
+                numOfPlayers = b.nextInt();
+                if (numOfPlayers > 0) {
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please enter a positive integer.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a positive integer.");
+                b.next(); // Clear the invalid input
+            }
+        }
+
         NewGame[] games = new NewGame[numOfPlayers];
-    
+
         // Initialize games for each player
         for (int i = 0; i < numOfPlayers; i++) {
             games[i] = new NewGame();
         }
-    
+
         // Play the game for each player
         b.nextLine(); // newline is consumed by the nextLine() call
         for (int i = 0; i < numOfPlayers; i++) {
@@ -38,7 +55,7 @@ public class SimonSays {
             b.nextLine(); // Wait for Enter press
             games[i].startGame();
         }
-    
+
         // Compare scores and determine winner
         int maxScore = -1; // must be less than 0
         int winnerIndex = 0;
@@ -51,7 +68,7 @@ public class SimonSays {
                 winnerIndex = i;
             }
         }
-    
+
         // Check for a tie
         boolean tie = false;
         for (int i = 0; i < numOfPlayers; i++) {
@@ -60,7 +77,7 @@ public class SimonSays {
                 break;
             }
         }
-    
+
         // Output winner or tie
         if (tie) {
             System.out.println("It's a tie!");
@@ -79,16 +96,22 @@ public class SimonSays {
     public static void launchGame() {
         Scanner scanner = new Scanner(System.in);
         int gameType = 0;
+        boolean check = true;
         do {
-            System.out.println("Enter: '1' for SINGLEPLAYER");
-            System.out.println("Enter: '2' for MULTIPLAYER");
-            gameType = scanner.nextInt();
-            if (gameType == 1 || gameType == 2) {
-                break;
+            System.out.println("Enter '1' for SINGLEPLAYER");
+            System.out.println("Enter '2' for MULTIPLAYER");
+            if (scanner.hasNextInt()) {
+                gameType = scanner.nextInt();
+                if (gameType == 1 || gameType == 2) {
+                    check = false;
+                } else {
+                    System.out.println("Invalid input");
+                }
             } else {
                 System.out.println("Invalid input");
+                scanner.next(); // Clear the invalid input
             }
-        } while (gameType != 1 && gameType != 2);
+        } while (check);
 
         if (gameType == 2) {
             multiplayer(scanner);
