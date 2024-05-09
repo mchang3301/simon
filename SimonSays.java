@@ -5,8 +5,8 @@ public class SimonSays {
         NewGame.clearScreen();
         System.out.println("Welcome to Matthew's Simon Says Text Game");
         System.out.println("Rules :");
-        System.out.println("i. player with the highest score wins");
-        System.out.println("ii. Don't begin to repeat the sequence until prompted");
+        System.out.println("i. Player with the highest score wins");
+        System.out.println("ii. Don't begin to repeat the Simon until prompted");
 
         // launches game
         launchGame();
@@ -17,35 +17,48 @@ public class SimonSays {
         System.out.println("Enter number of players: ");
         int numOfPlayers = b.nextInt();
         NewGame[] games = new NewGame[numOfPlayers];
-
+    
         // Initialize games for each player
         for (int i = 0; i < numOfPlayers; i++) {
             games[i] = new NewGame();
         }
-
+    
         // Play the game for each player
+        b.nextLine();
         for (int i = 0; i < numOfPlayers; i++) {
             System.out.println("Player " + (i + 1) + ":");
+            System.out.println("Press Enter to start game: ");
+            b.nextLine(); // Wait for Enter press
             games[i].startGame();
         }
-
+    
         // Compare scores and determine winner
-        int maxScore = -6;
-        int winnerIndex = -1;
+        int maxScore = -1;
+        int winnerIndex = 0;
+        int[] scores = new int[numOfPlayers];
         for (int i = 0; i < numOfPlayers; i++) {
-            int score = games[i].getScore();
-            System.out.println("Player " + (i + 1) + " score: " + score);
-            if (score > maxScore) {
-                maxScore = score;
+            scores[i] = games[i].getScore();
+            System.out.println("Player " + (i + 1) + " score: " + scores[i]);
+            if (scores[i] > maxScore) {
+                maxScore = scores[i];
                 winnerIndex = i;
             }
         }
-
-        // Output winner
-        if (winnerIndex != -1) {
-            System.out.println("Player " + (winnerIndex + 1) + " wins!");
-        } else {
+    
+        // Check for a tie
+        boolean tie = false;
+        for (int i = 0; i < numOfPlayers; i++) {
+            if (scores[i] == maxScore && i != winnerIndex) {
+                tie = true;
+                break;
+            }
+        }
+    
+        // Output winner or tie
+        if (tie) {
             System.out.println("It's a tie!");
+        } else {
+            System.out.println("Player " + (winnerIndex + 1) + " wins!");
         }
     }
 
@@ -60,8 +73,8 @@ public class SimonSays {
         Scanner scanner = new Scanner(System.in);
         int gameType = 0;
         do {
-            System.out.println("Enter: '1' for singleplayer");
-            System.out.println("Enter: '2' for multiplayer");
+            System.out.println("Enter: '1' for SINGLEPLAYER");
+            System.out.println("Enter: '2' for MULTIPLAYER");
             gameType = scanner.nextInt();
             if (gameType == 1 || gameType == 2) {
                 break;

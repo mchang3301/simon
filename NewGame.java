@@ -10,7 +10,7 @@ public class NewGame {
     //creates string array of actions
     private String[] generateActions(int length) {
         String[] sequence = new String[length];
-        String[] actions = { "up", "down", "left", "right" };
+        String[] actions = { "jump", "clap", "spin", "wiggle", "dance", "hop", "march", "snap", "stand", "skip", "flap", "shake", "wink", "crouch", "run"};
         for (int i = 0; i < length; i++) {
             sequence[i] = actions[random.nextInt(actions.length)];
         }
@@ -37,11 +37,13 @@ public class NewGame {
     private static void displayActions(String[] sequence) {
         sleep(2);
         clearScreen();
-        System.out.println("Simon says type:");
+        System.out.println("Simon says type: ");
         sleep(1);
+        clearScreen();
         for (int i = 0; i < sequence.length; i++) {
             System.out.println(sequence[i]);
             sleep(2);
+            clearScreen();
         }
         clearScreen();
     }
@@ -72,7 +74,7 @@ public class NewGame {
         while (true) {
             String[] sequence = generateActions(score + 1);
             displayActions(sequence);
-            sleep(3);
+            sleep(1);
             String[] userSequence = getUserActions(sequence.length);
             if (checkActions(userSequence, sequence)) {
                 System.out.println("Correct!");
